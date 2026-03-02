@@ -1,90 +1,79 @@
 /* ========================================================== */
 /*   Index Page                                               */
 /* ========================================================== */
-var carousels = {
-	pao: { currentSlide: 0, totalSlides: 3 },
-	bolo: { currentSlide: 0, totalSlides: 3 }
-};
+// === Navbar scroll shadow ===
+window.addEventListener('scroll', () => {
+	document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
 
-// Toggle Menu Hamburger
-function toggleMenu() {
-	var sidebar = document.querySelector('.sidebar');
-	var overlay = document.querySelector('.overlay');
-	var hamburger = document.querySelector('.hamburger-menu');
-	
-	sidebar.classList.toggle('active');
-	overlay.classList.toggle('active');
-	hamburger.classList.toggle('active');
+// === Mobile Menu ===
+function toggleMobileMenu() {
+	const t = document.getElementById('navToggle');
+	const m = document.getElementById('mobileMenu');
+	t.classList.toggle('open');
+	m.classList.toggle('open');
+}
+function closeMobileMenu() {
+	document.getElementById('navToggle').classList.remove('open');
+	document.getElementById('mobileMenu').classList.remove('open');
 }
 
-// Navegação entre páginas
-function showProductPage(product) {
-	document.getElementById('homePage').classList.remove('active');
-	document.getElementById('paoPage').classList.remove('active');
-	document.getElementById('boloPage').classList.remove('active');
-	
-	if (product === 'pao') {
-		document.getElementById('paoPage').classList.add('active');
-	} else if (product === 'bolo') {
-		document.getElementById('boloPage').classList.add('active');
-	}
-	window.scrollTo(0, 0);
-}
-
+// === Page Navigation ===
 function showHomePage() {
 	document.getElementById('paoPage').classList.remove('active');
 	document.getElementById('boloPage').classList.remove('active');
 	document.getElementById('homePage').classList.add('active');
-	window.scrollTo(0, 0);
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showProductPage(product) {
+	document.getElementById('homePage').classList.remove('active');
+	document.getElementById('paoPage').classList.remove('active');
+	document.getElementById('boloPage').classList.remove('active');
+	document.getElementById(product + 'Page').classList.add('active');
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showHomeSection(id) {
+	showHomePage();
+	setTimeout(() => {
+		const el = document.getElementById(id);
+		if (el) el.scrollIntoView({ behavior: 'smooth' });
+	}, 100);
+}
+function scrollToSection(id) {
+	const el = document.getElementById(id);
+	if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Funções do Carrossel
-function updateCarousel(type) {
-	var carousel = document.getElementById(type + 'Carousel');
-	var offset = -carousels[type].currentSlide * 100;
-	carousel.style.transform = 'translateX(' + offset + '%)';
-	updateIndicators(type);
+// === Carousel ===
+const carState = {
+	pao:  { current: 0, total: 3 },
+	bolo: { current: 0, total: 3 }
+};
+function updateCarouselNew(type) {
+	const track = document.getElementById(type + 'Track');
+	track.style.transform = `translateX(-${carState[type].current * 100}%)`;
+	const dots = document.getElementById(type + 'Dots').querySelectorAll('.c-dot');
+	dots.forEach((d, i) => d.classList.toggle('active', i === carState[type].current));
+}
+function nextSlideNew(type) {
+	carState[type].current = (carState[type].current + 1) % carState[type].total;
+	updateCarouselNew(type);
+}
+function prevSlideNew(type) {
+	carState[type].current = (carState[type].current - 1 + carState[type].total) % carState[type].total;
+	updateCarouselNew(type);
+}
+function goToSlideNew(type, idx) {
+	carState[type].current = idx;
+	updateCarouselNew(type);
 }
 
-function updateIndicators(type) {
-	var page = type === 'pao' ? 'paoPage' : 'boloPage';
-	var indicators = document.querySelectorAll('#' + page + ' .indicator');
-	indicators.forEach(function(indicator, index) {
-		if (index === carousels[type].currentSlide) {
-			indicator.classList.add('active');
-		} else {
-			indicator.classList.remove('active');
-		}
-	});
-}
-
-function nextSlide(type) {
-	carousels[type].currentSlide = (carousels[type].currentSlide + 1) % carousels[type].totalSlides;
-	updateCarousel(type);
-}
-
-function prevSlide(type) {
-	carousels[type].currentSlide = (carousels[type].currentSlide - 1 + carousels[type].totalSlides) % carousels[type].totalSlides;
-	updateCarousel(type);
-}
-
-function goToSlide(type, slideIndex) {
-	carousels[type].currentSlide = slideIndex;
-	updateCarousel(type);
-}
-
-// Função para fazer pedido
+// === WhatsApp ===
 function fazerPedido() {
-	var mensagem = "Olá! Gostaria de fazer um pedido de delícias caseiras da il mio Bene";
-	var numeroWhatsApp = "5511919091023"; 
-	var url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
-	window.open(url, '_blank');
+	const msg = "Olá! Gostaria de fazer um pedido de delícias caseiras da Il Mio Bene!";
+	window.open("https://wa.me/5511919091023?text=" + encodeURIComponent(msg), '_blank');
 }
-
-// Função para pedir produto específico
 function pedirProduto(produto) {
-	var mensagem = "Olá! Gostaria de fazer um pedido de " + produto;
-	var numeroWhatsApp = "5511919091023"; 
-	var url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
-	window.open(url, '_blank');
+	const msg = "Olá! Gostaria de fazer um pedido de " + produto;
+	window.open("https://wa.me/5511919091023?text=" + encodeURIComponent(msg), '_blank');
 }
