@@ -76,7 +76,7 @@ function goToSlide(type, slideIndex) {
 // Função para fazer pedido
 function fazerPedido() {
 	var mensagem = "Olá! Gostaria de fazer um pedido de delícias caseiras da il mio Bene";
-	var numeroWhatsApp = "5511973691023"; 
+	var numeroWhatsApp = "5511919091023"; 
 	var url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
 	window.open(url, '_blank');
 }
@@ -84,7 +84,7 @@ function fazerPedido() {
 // Função para pedir produto específico
 function pedirProduto(produto) {
 	var mensagem = "Olá! Gostaria de fazer um pedido de " + produto;
-	var numeroWhatsApp = "5511973691023"; 
+	var numeroWhatsApp = "5511919091023"; 
 	var url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
 	window.open(url, '_blank');
 }
