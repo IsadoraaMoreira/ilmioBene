@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Mio Bene</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe4e9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #f3e5f5 0%, #fce4ec 50%, #e8f5e9 100%);
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+        }
+
+        .logo {
+            margin-bottom: 16px;
+        }
+
+        .logo h1 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 36px;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .logo .il-mio {
+            color: #ba68c8;
+        }
+
+        .logo .bene {
+            color: #81c784;
+        }
+
+        .hearts {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .hearts svg {
+            width: 12px;
+            height: 12px;
+            fill: #f8bbd0;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 32px;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .title-section h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ba68c8 0%, #81c784 100%);
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card:nth-child(2) {
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+        }
+
+        .product-emoji {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .product-card p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .features {
+            background: linear-gradient(90deg, #f3e5f5 0%, #e8f5e9 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-emoji {
+            font-size: 24px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(90deg, #ba68c8 0%, #81c784 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(186, 104, 200, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(186, 104, 200, 0.4);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .contact-info span {
+            font-weight: 600;
+            color: #4caf50;
+        }
+
+        .delivery-info {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer {
+            background: linear-gradient(90deg, #f3e5f5 0%, #e8f5e9 100%);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .download-section {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .download-btn {
+            background: white;
+            color: #555;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                border-radius: 16px;
+            }
+            
+            .content {
+                padding: 24px;
+            }
+            
+            .logo h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="header">
+                <div class="social-icons">
+                    <svg fill="none" stroke="#ba68c8" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                    <svg fill="none" stroke="#81c784" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                </div>
+                
+                <div class="logo">
+                    <h1 class="il-mio">il mio</h1>
+                    <h1 class="bene">bene</h1>
+                    <div class="hearts">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <p class="subtitle">Feito com amor e carinho</p>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="title-section">
+                    <h2>Mais doce, mais bene!</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="products">
+                    <div class="product-card">
+                        <div class="product-emoji">🍯</div>
+                        <h3>Pães de Mel</h3>
+                        <p>Macios e irresistíveis</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-emoji">🍰</div>
+                        <h3>Bolos Caseiros</h3>
+                        <p>Sabor de vovó</p>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-emoji">✨</span>
+                        <span class="feature-text">100% artesanal e caseiro</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-emoji">🎂</span>
+                        <span class="feature-text">Ingredientes selecionados</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-emoji">💝</span>
+                        <span class="feature-text">Feito com muito amor</span>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <button class="cta-button" onclick="fazerPedido()">
+                        Faça seu Pedido Agora!
+                    </button>
+                    
+                    <p class="contact-info">
+                        📱 WhatsApp: <span>(11) 97369-1023</span>
+                    </p>
+                    <p class="delivery-info">
+                        📍 Encomendas abertas!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>Siga @ilmiobene_doces no Instagram 💜</p>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button class="download-btn" onclick="baixarImagem()">
+                📥 Baixar Imagem para Compartilhar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function fazerPedido() {
+            const numeroWhatsApp = '5511973691023'; // Coloque seu número com DDI + DDD
+            const mensagem = 'Olá! Gostaria de fazer um pedido da Il Mio Bene';
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+
+        function baixarImagem() {
+            alert('Para baixar a imagem:\n\n1. Tire um print/screenshot desta tela\n2. Ou use uma ferramenta de captura de tela\n3. Recorte apenas o card social\n\nObrigado por compartilhar Il Mio Bene!');
+        }
+
+        // Animação suave ao carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Adiciona efeito de hover nos cards de produto
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
